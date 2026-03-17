@@ -1,0 +1,51 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sc_bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1929"/>
+      <stop offset="100%" stop-color="#0F2A45"/>
+    </linearGradient>
+    <linearGradient id="sc_accent" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF"/>
+      <stop offset="100%" stop-color="#00B0FF"/>
+    </linearGradient>
+    <pattern id="sc_grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1E3A5F" stroke-width="0.5" opacity="0.25"/>
+    </pattern>
+    <radialGradient id="sc_glow" cx="400" cy="315" r="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#40C4FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#sc_bg)"/>
+  <rect width="1200" height="630" fill="url(#sc_grid)"/>
+  <rect width="1200" height="630" fill="url(#sc_glow)"/>
+
+  <!-- Top/bottom accent lines -->
+  <rect y="0" width="1200" height="3" fill="url(#sc_accent)" opacity="0.6"/>
+  <rect y="627" width="1200" height="3" fill="url(#sc_accent)" opacity="0.6"/>
+
+  <!-- Logo icon -->
+  <rect x="100" y="200" width="160" height="160" rx="36" fill="#0B1929" stroke="#1E3A5F" stroke-width="2"/>
+  <path d="M136 332V262C136 252.5 140 245.5 147.8 241.7C153 238.8 159.5 238.6 165 240.3L161.6 252C158.7 250.9 155.5 251.2 153.3 252.5C151.1 253.8 149.8 256.8 149.8 260.8V264.8H162V276H149.8V332H136Z" fill="url(#sc_accent)"/>
+  <path d="M168 264.8L180.5 286L168 308H183L188.5 299L194 308H209L196.5 286L209 264.8H194L188.5 273.5L183 264.8H168Z" fill="url(#sc_accent)"/>
+  <circle cx="218" cy="234" r="10" fill="#40C4FF" opacity="0.9"/>
+
+  <!-- Title -->
+  <text x="310" y="290" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,sans-serif" font-size="96" font-weight="800" fill="#F1F5F9" letter-spacing="-3">fx</text>
+
+  <!-- Tagline -->
+  <text x="310" y="340" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,sans-serif" font-size="28" font-weight="400" fill="#94A3B8" letter-spacing="0.5">Smart monorepo tool for Dart &amp; Flutter</text>
+
+  <!-- Feature list -->
+  <text x="100" y="460" font-family="'Inter',system-ui,sans-serif" font-size="20" font-weight="500" fill="#64748B">
+    <tspan fill="#40C4FF">&#x25CF;</tspan> Task Caching
+    <tspan dx="30" fill="#40C4FF">&#x25CF;</tspan> Affected Analysis
+    <tspan dx="30" fill="#40C4FF">&#x25CF;</tspan> Code Generation
+    <tspan dx="30" fill="#40C4FF">&#x25CF;</tspan> Plugin System
+    <tspan dx="30" fill="#40C4FF">&#x25CF;</tspan> CI/CD Ready
+  </text>
+
+  <!-- URL -->
+  <text x="100" y="550" font-family="'SF Mono','Fira Code',monospace" font-size="18" fill="#40C4FF" opacity="0.7">github.com/rkishan516/fx</text>
+</svg>

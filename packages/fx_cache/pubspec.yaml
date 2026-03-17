@@ -1,0 +1,21 @@
+name: fx_cache
+description: Computation caching for the fx monorepo tool.
+version: 0.1.0
+publish_to: none
+
+resolution: workspace
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  crypto: ^3.0.3
+  fx_core:
+    path: ../fx_core
+  fx_graph:
+    path: ../fx_graph
+  path: ^1.9.0
+
+dev_dependencies:
+  lints: ^6.1.0
+  test: ^1.24.0

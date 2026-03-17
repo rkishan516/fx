@@ -1,0 +1,7 @@
+[build]
+  publish = "docs/site/build/jaspr"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

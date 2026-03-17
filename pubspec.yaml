@@ -1,0 +1,46 @@
+name: fx_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.11.1
+
+workspace:
+  - packages/fx_core
+  - packages/fx_graph
+  - packages/fx_runner
+  - packages/fx_cache
+  - packages/fx_generator
+  - packages/fx_cli
+  - docs/site
+
+dev_dependencies:
+  fx_cli:
+    path: packages/fx_cli
+  fx_core:
+    path: packages/fx_core
+  fx_runner:
+    path: packages/fx_runner
+  path: ^1.9.0
+  test: ^1.24.0
+
+fx:
+  packages:
+    - packages/*
+  targets:
+    test:
+      executor: dart test
+      inputs:
+        - lib/**
+        - test/**
+    analyze:
+      executor: dart analyze
+      inputs:
+        - lib/**
+    format:
+      executor: dart format .
+      inputs:
+        - lib/**
+        - test/**
+  cache:
+    enabled: true
+    directory: .fx_cache

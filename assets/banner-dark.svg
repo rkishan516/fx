@@ -1,0 +1,124 @@
+<svg width="1200" height="300" viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="banner_bg" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1929"/>
+      <stop offset="100%" stop-color="#0F2A45"/>
+    </linearGradient>
+    <linearGradient id="banner_fx" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#40C4FF"/>
+      <stop offset="100%" stop-color="#00B0FF"/>
+    </linearGradient>
+    <linearGradient id="accent_line" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0"/>
+      <stop offset="15%" stop-color="#40C4FF" stop-opacity="0.6"/>
+      <stop offset="85%" stop-color="#00B0FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#00B0FF" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#40C4FF" stroke-width="0.3" opacity="0.08"/>
+    </pattern>
+    <!-- Glow -->
+    <radialGradient id="glow" cx="400" cy="150" r="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#40C4FF" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#40C4FF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Logo box shadow glow -->
+    <filter id="logo_glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12"/>
+    </filter>
+    <!-- Dot glow -->
+    <filter id="dot_glow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#banner_bg)"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  <rect width="1200" height="300" fill="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect y="0" width="1200" height="2" fill="url(#accent_line)"/>
+
+  <!-- === Left Side: Brand & Tagline === -->
+
+  <!-- Logo box glow -->
+  <rect x="70" y="68" width="124" height="124" rx="24" fill="#40C4FF" opacity="0.08" filter="url(#logo_glow)"/>
+
+  <!-- Logo box -->
+  <rect x="70" y="68" width="124" height="124" rx="24" fill="#08131E" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="1"/>
+
+  <!-- fx text inside logo -->
+  <text x="132" y="148" font-family="'Space Grotesk','Inter','SF Pro Display',system-ui,sans-serif" font-size="52" font-weight="900" fill="url(#banner_fx)" text-anchor="middle" letter-spacing="-2">fx</text>
+
+  <!-- Accent dot with glow -->
+  <circle cx="172" cy="88" r="4" fill="#40C4FF" filter="url(#dot_glow)"/>
+  <circle cx="172" cy="88" r="3" fill="#40C4FF"/>
+
+  <!-- Wordmark -->
+  <text x="222" y="152" font-family="'Space Grotesk','Inter','SF Pro Display',system-ui,sans-serif" font-size="72" font-weight="900" fill="#F1F5F9" letter-spacing="-2">fx</text>
+
+  <!-- Tagline -->
+  <text x="72" y="222" font-family="'Space Grotesk','Inter','SF Pro Display',system-ui,sans-serif" font-size="18" font-weight="500" fill="#94A3B8" letter-spacing="0.5">Smart monorepo tool for Dart &amp; Flutter</text>
+
+  <!-- === Right Side: Feature Badges === -->
+
+  <!-- Row 1 -->
+  <g>
+    <rect x="570" y="72" width="128" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="634" y="93" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Task Caching</text>
+  </g>
+
+  <g>
+    <rect x="708" y="72" width="152" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="784" y="93" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Affected Analysis</text>
+  </g>
+
+  <g>
+    <rect x="870" y="72" width="148" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="944" y="93" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Code Generation</text>
+  </g>
+
+  <g>
+    <rect x="1028" y="72" width="115" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="1085" y="93" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Watch Mode</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g>
+    <rect x="570" y="114" width="136" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="638" y="135" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Plugin System</text>
+  </g>
+
+  <g>
+    <rect x="716" y="114" width="160" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="796" y="135" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">Dependency Graph</text>
+  </g>
+
+  <g>
+    <rect x="886" y="114" width="118" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="945" y="135" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">CI/CD Ready</text>
+  </g>
+
+  <g>
+    <rect x="1014" y="114" width="130" height="32" rx="16" fill="#1E3A5F" fill-opacity="0.5" stroke="#40C4FF" stroke-opacity="0.2" stroke-width="0.75"/>
+    <text x="1079" y="135" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="13" font-weight="600" fill="#40C4FF" text-anchor="middle">MCP for AI</text>
+  </g>
+
+  <!-- === Terminal Snippet === -->
+  <rect x="570" y="168" width="574" height="44" rx="12" fill="#08131E" fill-opacity="0.8" stroke="#40C4FF" stroke-opacity="0.15" stroke-width="0.75"/>
+  <text y="196" font-family="'SF Mono','Fira Code','JetBrains Mono',monospace" font-size="14">
+    <tspan x="590" fill="#40C4FF">$</tspan>
+    <tspan fill="#64748B"> </tspan>
+    <tspan fill="#F1F5F9">fx run-many</tspan>
+    <tspan fill="#64748B"> --target test --affected</tspan>
+  </text>
+
+  <!-- === Bottom Tagline Accent === -->
+  <line x1="72" y1="240" x2="440" y2="240" stroke="#1E3A5F" stroke-opacity="0.4" stroke-width="0.5"/>
+
+  <!-- Bottom accent line -->
+  <rect y="298" width="1200" height="2" fill="url(#accent_line)"/>
+</svg>

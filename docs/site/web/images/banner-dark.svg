@@ -1,0 +1,88 @@
+<svg width="1200" height="300" viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="banner_bg" x1="0" y1="0" x2="1200" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1929"/>
+      <stop offset="50%" stop-color="#0D2137"/>
+      <stop offset="100%" stop-color="#0F2A45"/>
+    </linearGradient>
+    <linearGradient id="banner_fx" x1="0" y1="80" x2="200" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF"/>
+      <stop offset="100%" stop-color="#00B0FF"/>
+    </linearGradient>
+    <linearGradient id="accent_line" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#40C4FF" stop-opacity="0.8"/>
+      <stop offset="80%" stop-color="#00B0FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00B0FF" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E3A5F" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <!-- Glow -->
+    <radialGradient id="glow" cx="300" cy="150" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#40C4FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#banner_bg)"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  <rect width="1200" height="300" fill="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect y="0" width="1200" height="2" fill="url(#accent_line)"/>
+
+  <!-- Logo icon (rounded rect) -->
+  <rect x="80" y="88" width="124" height="124" rx="28" fill="#0B1929" stroke="#1E3A5F" stroke-width="1.5"/>
+
+  <!-- f letter -->
+  <path d="M110 196V147C110 140.5 113 135 118.5 132.2C122.4 130.1 126.9 130 131 131.3L128.5 140C126.4 139.2 124 139.4 122.4 140.4C120.8 141.4 119.8 143.6 119.8 146.5V149.5H129V158H119.8V196H110Z" fill="url(#banner_fx)"/>
+
+  <!-- x letter -->
+  <path d="M134 149.5L142.5 164L134 178.5H144L148 172L152 178.5H162L153.5 164L162 149.5H152L148 156L144 149.5H134Z" fill="url(#banner_fx)"/>
+
+  <!-- Accent dot -->
+  <circle cx="168" cy="126" r="7" fill="#40C4FF" opacity="0.9"/>
+
+  <!-- Wordmark -->
+  <text x="250" y="170" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,sans-serif" font-size="72" font-weight="800" fill="#F1F5F9" letter-spacing="-2">fx</text>
+
+  <!-- Tagline -->
+  <text x="250" y="205" font-family="'Inter','SF Pro Display','Segoe UI',system-ui,sans-serif" font-size="22" font-weight="400" fill="#94A3B8" letter-spacing="0.5">Smart monorepo tool for Dart &amp; Flutter</text>
+
+  <!-- Feature pills -->
+  <rect x="580" y="100" width="130" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="645" y="121" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Task Caching</text>
+
+  <rect x="720" y="100" width="150" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="795" y="121" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Affected Analysis</text>
+
+  <rect x="880" y="100" width="145" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="952" y="121" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Code Generation</text>
+
+  <rect x="1035" y="100" width="110" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="1090" y="121" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Watch Mode</text>
+
+  <rect x="580" y="145" width="140" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="650" y="166" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Plugin System</text>
+
+  <rect x="730" y="145" width="150" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="805" y="166" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">Dependency Graph</text>
+
+  <rect x="890" y="145" width="115" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="947" y="166" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">CI/CD Ready</text>
+
+  <rect x="1015" y="145" width="130" height="32" rx="16" fill="#1E3A5F" opacity="0.6"/>
+  <text x="1080" y="166" font-family="'Inter',system-ui,sans-serif" font-size="13" font-weight="500" fill="#40C4FF" text-anchor="middle">MCP for AI</text>
+
+  <!-- Bottom section -->
+  <rect x="580" y="210" width="565" height="1" fill="#1E3A5F" opacity="0.5"/>
+  <text x="580" y="240" font-family="'SF Mono','Fira Code','JetBrains Mono',monospace" font-size="15" fill="#64748B">$ </text>
+  <text x="600" y="240" font-family="'SF Mono','Fira Code','JetBrains Mono',monospace" font-size="15" fill="#40C4FF">fx run-many</text>
+  <text x="730" y="240" font-family="'SF Mono','Fira Code','JetBrains Mono',monospace" font-size="15" fill="#94A3B8"> --target test --affected</text>
+
+  <!-- Bottom accent line -->
+  <rect y="298" width="1200" height="2" fill="url(#accent_line)"/>
+</svg>

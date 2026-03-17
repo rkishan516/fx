@@ -1,0 +1,26 @@
+# Dart
+.dart_tool/
+.packages
+pubspec.lock
+**/doc/api/
+
+# fx cache
+.fx_cache/
+
+# Build output
+build/
+
+# IDE
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.swp

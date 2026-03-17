@@ -1,0 +1,71 @@
+<svg width="760" height="320" viewBox="0 0 760 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="cs"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0B1929" flood-opacity="0.06"/></filter>
+    <linearGradient id="cg" x1="0" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#40C4FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#40C4FF" stop-opacity="0"/>
+    </linearGradient>
+    <marker id="ca" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="320" rx="12" fill="#FAFBFC" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="0" y="0" width="760" height="40" rx="12" fill="url(#cg)"/>
+  <text x="380" y="26" font-family="'Inter',system-ui,sans-serif" font-size="14" font-weight="700" fill="#0F172A" text-anchor="middle">How Caching Works</text>
+
+  <!-- Step 1: Source Files -->
+  <rect x="30" y="70" width="120" height="70" rx="8" fill="white" stroke="#E2E8F0" filter="url(#cs)"/>
+  <text x="90" y="97" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#0F172A" text-anchor="middle">Source Files</text>
+  <text x="90" y="115" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">lib/, test/</text>
+  <text x="90" y="128" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">pubspec.lock</text>
+
+  <!-- Arrow -->
+  <path d="M150 105 L190 105" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ca)"/>
+
+  <!-- Step 2: Hasher -->
+  <rect x="195" y="70" width="120" height="70" rx="8" fill="#0B1929" filter="url(#cs)"/>
+  <text x="255" y="97" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#40C4FF" text-anchor="middle">SHA-256 Hash</text>
+  <text x="255" y="115" font-family="'SF Mono',monospace" font-size="10" fill="#94A3B8" text-anchor="middle">inputs + executor</text>
+  <text x="255" y="128" font-family="'SF Mono',monospace" font-size="10" fill="#94A3B8" text-anchor="middle">+ SDK + env</text>
+
+  <!-- Arrow -->
+  <path d="M315 105 L355 105" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ca)"/>
+
+  <!-- Step 3: Cache Check -->
+  <rect x="360" y="60" width="120" height="90" rx="8" fill="white" stroke="#40C4FF" stroke-width="2" filter="url(#cs)"/>
+  <text x="420" y="87" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="700" fill="#0F172A" text-anchor="middle">Cache Check</text>
+  <text x="420" y="107" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#64748B" text-anchor="middle">hash exists?</text>
+  <text x="396" y="138" font-family="'Inter',system-ui,sans-serif" font-size="10" font-weight="600" fill="#22C55E">HIT</text>
+  <text x="444" y="138" font-family="'Inter',system-ui,sans-serif" font-size="10" font-weight="600" fill="#F97316">MISS</text>
+
+  <!-- HIT path -->
+  <path d="M396 150 L396 190 L255 190" stroke="#22C55E" stroke-width="1.5" marker-end="url(#ca)" stroke-dasharray="4 3"/>
+  <rect x="195" y="175" width="120" height="50" rx="8" fill="#F0FFF4" stroke="#22C55E" filter="url(#cs)"/>
+  <text x="255" y="197" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#22C55E" text-anchor="middle">Replay Cache</text>
+  <text x="255" y="213" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">~0.01s</text>
+
+  <!-- MISS path -->
+  <path d="M444 150 L444 190 L575 190" stroke="#F97316" stroke-width="1.5" marker-end="url(#ca)"/>
+  <rect x="515" y="70" width="120" height="70" rx="8" fill="white" stroke="#E2E8F0" filter="url(#cs)"/>
+  <text x="575" y="97" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#0F172A" text-anchor="middle">Execute Task</text>
+  <text x="575" y="115" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">dart test</text>
+  <text x="575" y="128" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">dart compile</text>
+
+  <!-- Store result -->
+  <rect x="515" y="175" width="120" height="50" rx="8" fill="#FFF7ED" stroke="#F97316" filter="url(#cs)"/>
+  <text x="575" y="197" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#F97316" text-anchor="middle">Store Result</text>
+  <text x="575" y="213" font-family="'SF Mono',monospace" font-size="10" fill="#64748B" text-anchor="middle">hash → output</text>
+
+  <!-- Arrow from Execute to Store -->
+  <path d="M635 105 L670 105 L670 200 L635 200" stroke="#F97316" stroke-width="1.5" marker-end="url(#ca)"/>
+
+  <!-- Remote cache -->
+  <rect x="315" y="255" width="160" height="45" rx="8" fill="#0B1929" filter="url(#cs)"/>
+  <text x="395" y="275" font-family="'Inter',system-ui,sans-serif" font-size="11" font-weight="600" fill="#40C4FF" text-anchor="middle">Remote Cache (optional)</text>
+  <text x="395" y="290" font-family="'SF Mono',monospace" font-size="10" fill="#94A3B8" text-anchor="middle">S3 / GCS / HTTP</text>
+
+  <!-- Arrows to remote -->
+  <path d="M255 225 L255 277 L315 277" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3 3"/>
+  <path d="M575 225 L575 277 L475 277" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3 3"/>
+</svg>

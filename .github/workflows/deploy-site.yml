@@ -1,0 +1,37 @@
+name: Deploy Docs Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/site/**"
+      - "netlify.toml"
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "3.11.1"
+
+      - run: dart pub get
+
+      - name: Install Jaspr CLI
+        run: dart pub global activate jaspr_cli
+
+      - name: Build site
+        working-directory: docs/site
+        run: dart pub global run jaspr_cli:jaspr build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: docs/site/build/jaspr
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

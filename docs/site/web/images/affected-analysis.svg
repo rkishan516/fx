@@ -1,0 +1,50 @@
+<svg width="620" height="300" viewBox="0 0 620 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="aa_s"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0B1929" flood-opacity="0.06"/></filter>
+    <marker id="aa_a" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <rect width="620" height="300" rx="12" fill="#FAFBFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="310" y="28" font-family="'Inter',system-ui,sans-serif" font-size="14" font-weight="700" fill="#0F172A" text-anchor="middle">Affected Analysis: Change in "shared" propagates to dependents</text>
+
+  <!-- shared (changed) -->
+  <rect x="245" y="55" width="130" height="50" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" filter="url(#aa_s)"/>
+  <text x="310" y="78" font-family="'SF Mono',monospace" font-size="12" font-weight="700" fill="#EF4444" text-anchor="middle">shared</text>
+  <text x="310" y="95" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#EF4444" text-anchor="middle">changed</text>
+
+  <!-- models (affected) -->
+  <rect x="80" y="145" width="130" height="50" rx="8" fill="#FFF7ED" stroke="#F97316" stroke-width="2" filter="url(#aa_s)"/>
+  <text x="145" y="168" font-family="'SF Mono',monospace" font-size="12" font-weight="600" fill="#F97316" text-anchor="middle">models</text>
+  <text x="145" y="185" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#F97316" text-anchor="middle">affected</text>
+
+  <!-- utils (affected) -->
+  <rect x="410" y="145" width="130" height="50" rx="8" fill="#FFF7ED" stroke="#F97316" stroke-width="2" filter="url(#aa_s)"/>
+  <text x="475" y="168" font-family="'SF Mono',monospace" font-size="12" font-weight="600" fill="#F97316" text-anchor="middle">utils</text>
+  <text x="475" y="185" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#F97316" text-anchor="middle">affected</text>
+
+  <!-- app (affected) -->
+  <rect x="80" y="235" width="130" height="50" rx="8" fill="#FFF7ED" stroke="#F97316" stroke-width="2" filter="url(#aa_s)"/>
+  <text x="145" y="258" font-family="'SF Mono',monospace" font-size="12" font-weight="600" fill="#F97316" text-anchor="middle">app</text>
+  <text x="145" y="275" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#F97316" text-anchor="middle">affected</text>
+
+  <!-- api (not affected) -->
+  <rect x="410" y="235" width="130" height="50" rx="8" fill="white" stroke="#E2E8F0" filter="url(#aa_s)"/>
+  <text x="475" y="258" font-family="'SF Mono',monospace" font-size="12" font-weight="500" fill="#94A3B8" text-anchor="middle">api</text>
+  <text x="475" y="275" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">skipped</text>
+
+  <!-- Arrows (dependency direction: dependent -> dependency) -->
+  <path d="M245 80 L210 80 L210 145 L145 145" stroke="#F97316" stroke-width="1.5" marker-end="url(#aa_a)"/>
+  <path d="M375 80 L410 80 L410 145 L475 145" stroke="#F97316" stroke-width="1.5" marker-end="url(#aa_a)"/>
+  <path d="M145 195 L145 235" stroke="#F97316" stroke-width="1.5" marker-end="url(#aa_a)"/>
+
+  <!-- Legend -->
+  <rect x="250" y="240" width="120" height="50" rx="6" fill="white" stroke="#E2E8F0"/>
+  <rect x="262" y="250" width="10" height="10" rx="2" fill="#FEF2F2" stroke="#EF4444"/>
+  <text x="278" y="259" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#64748B">Changed</text>
+  <rect x="262" y="265" width="10" height="10" rx="2" fill="#FFF7ED" stroke="#F97316"/>
+  <text x="278" y="274" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#64748B">Affected</text>
+  <rect x="330" y="250" width="10" height="10" rx="2" fill="white" stroke="#E2E8F0"/>
+  <text x="346" y="259" font-family="'Inter',system-ui,sans-serif" font-size="10" fill="#64748B">Skipped</text>
+</svg>

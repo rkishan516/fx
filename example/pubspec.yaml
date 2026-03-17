@@ -1,0 +1,23 @@
+name: example_monorepo
+publish_to: none
+
+environment:
+  sdk: ^3.11.1
+
+dev_dependencies:
+  lints: ^6.0.0
+
+workspace:
+  - packages/shared
+  - packages/app
+
+fx:
+  projects:
+    packages/*:
+      targets:
+        test:
+          command: "dart test"
+        analyze:
+          command: "dart analyze"
+        format:
+          command: "dart format ."
