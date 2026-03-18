@@ -205,7 +205,7 @@ fx mcp                            # Start MCP server
 
 ### IDE Extension — Fx Console
 
-[Fx Console](./console/fx_console/) is a VS Code extension that brings the full fx experience into your editor. Equivalent to [Nx Console](https://nx.dev/getting-started/editor-setup) for the fx ecosystem.
+[Fx Console](https://github.com/rkishan516/fx-console) is a VS Code extension that brings the full fx experience into your editor. Equivalent to [Nx Console](https://nx.dev/getting-started/editor-setup) for the fx ecosystem.
 
 - **Workspace Explorer** — sidebar tree view of all projects, targets, and dependencies
 - **Run Targets** — click to run, with verbose, skip-cache, and advanced options
@@ -327,7 +327,7 @@ fx is structured as a monorepo that dogfoods its own capabilities:
 | **`fx_cache`** | Computation caching with SHA-256 hashing, local + remote stores (S3/GCS), graph cache |
 | **`fx_generator`** | Code generation framework, template engine, built-in generators, interactive prompts |
 | **`fx_cli`** | CLI entry point, 30+ commands, output formatting, daemon, MCP server |
-| **[`fx_console`](./console/fx_console/)** | VS Code extension — project explorer, graph UI, generator forms, migration step-through |
+| **[`fx_console`](https://github.com/rkishan516/fx-console)** | VS Code extension — project explorer, graph UI, generator forms, migration step-through |
 
 <br>
 
@@ -350,7 +350,7 @@ fx brings Nx-level monorepo tooling to the Dart ecosystem:
 | Background daemon | Yes | Yes (with incremental graph cache) |
 | Migration framework | Yes | Yes (prepare/execute phases) |
 | MCP / AI integration | No | Yes |
-| IDE extension | Nx Console | [Fx Console](./console/fx_console/) |
+| IDE extension | Nx Console | [Fx Console](https://github.com/rkishan516/fx-console) |
 | Cloud / DTE | Nx Cloud | Not planned |
 
 <br>
