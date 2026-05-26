@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fx_cli/fx_cli.dart';
+import 'package:fx_runner/fx_runner.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -107,6 +108,63 @@ fx:
       final jsonData = jsonDecode(buffer.toString()) as List;
       final names = jsonData.map((e) => (e as Map)['name'] as String).toSet();
       expect(names, equals({'pkg_a', 'pkg_b'}));
+    });
+
+    test('--affected --json lists only projects from git changes', () async {
+      final mockRunner = MockProcessRunner(
+        onRun: (call) {
+          if (call.executable == 'git' && call.arguments.contains('diff')) {
+            return ProcessResult(
+              exitCode: 0,
+              stdout: 'packages/pkg_b/lib/pkg_b.dart',
+              stderr: '',
+            );
+          }
+          return ProcessResult(exitCode: 0, stdout: '', stderr: '');
+        },
+      );
+
+      final buffer = StringBuffer();
+      final runner = FxCommandRunner(
+        outputSink: buffer,
+        processRunner: mockRunner,
+      );
+
+      await runner.run([
+        'list',
+        '--affected',
+        '--json',
+        '--workspace',
+        workspaceDir.path,
+      ]);
+
+      final jsonData = jsonDecode(buffer.toString()) as List;
+      final names = jsonData.map((e) => (e as Map)['name'] as String).toList();
+      expect(names, equals(['pkg_b']));
+    });
+
+    test('--affected --json supports explicit changed files', () async {
+      final buffer = StringBuffer();
+      final runner = FxCommandRunner(
+        outputSink: buffer,
+        processRunner: MockProcessRunner(
+          onRun: (_) => ProcessResult(exitCode: 0, stdout: '', stderr: ''),
+        ),
+      );
+
+      await runner.run([
+        'list',
+        '--affected',
+        '--json',
+        '--workspace',
+        workspaceDir.path,
+        '--files',
+        'packages/pkg_b/lib/pkg_b.dart',
+      ]);
+
+      final jsonData = jsonDecode(buffer.toString()) as List;
+      final names = jsonData.map((e) => (e as Map)['name'] as String).toList();
+      expect(names, equals(['pkg_b']));
     });
   });
 }

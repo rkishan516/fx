@@ -29,11 +29,16 @@ class AffectedAnalyzer {
   }) {
     if (changedFiles.isEmpty) return [];
 
+    final normalizedFiles = changedFiles
+        .map((file) => _normalizeChangedPath(file, workspaceRoot))
+        .where((file) => file.isNotEmpty)
+        .toList();
+
     // Separate lock files from other changed files
     final effectiveFiles = <String>[];
     final hasLockFileChanges = <String>[];
 
-    for (final file in changedFiles) {
+    for (final file in normalizedFiles) {
       final basename = p.basename(file);
       if (_lockFiles.contains(basename)) {
         hasLockFileChanges.add(file);
@@ -78,12 +83,23 @@ class AffectedAnalyzer {
     return projects.where((p) => allAffected.contains(p.name)).toList();
   }
 
+  /// Normalize a changed path to an absolute path under [workspaceRoot] when
+  /// the caller supplied a relative git-style path.
+  static String _normalizeChangedPath(String filePath, String workspaceRoot) {
+    final trimmed = filePath.trim();
+    if (trimmed.isEmpty) return '';
+
+    if (p.isAbsolute(trimmed)) return p.normalize(trimmed);
+
+    return p.normalize(p.join(workspaceRoot, trimmed));
+  }
+
   /// Whether [filePath] is within [projectPath].
   static bool _isInProject(String filePath, String projectPath) {
     final normalizedFile = p.normalize(filePath);
     final normalizedProject = p.normalize(projectPath);
-    return normalizedFile.startsWith('$normalizedProject/') ||
-        normalizedFile.startsWith('$normalizedProject${p.separator}');
+    return p.equals(normalizedFile, normalizedProject) ||
+        p.isWithin(normalizedProject, normalizedFile);
   }
 
   /// Whether [filePath] is a root-level file (not inside any project).
@@ -97,6 +113,9 @@ class AffectedAnalyzer {
       if (_isInProject(filePath, project.path)) return false;
     }
     // Must be within workspace root to count as root-level
-    return filePath.startsWith(workspaceRoot);
+    final normalizedFile = p.normalize(filePath);
+    final normalizedWorkspaceRoot = p.normalize(workspaceRoot);
+    return p.equals(normalizedFile, normalizedWorkspaceRoot) ||
+        p.isWithin(normalizedWorkspaceRoot, normalizedFile);
   }
 }

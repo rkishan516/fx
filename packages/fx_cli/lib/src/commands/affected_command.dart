@@ -7,6 +7,7 @@ import 'package:fx_runner/fx_runner.dart';
 
 import '../output/output_formatter.dart';
 import '../output/tui_formatter.dart';
+import 'affected_git.dart';
 import 'run_command.dart';
 
 /// `fx affected` — Run a target on projects affected by git changes.
@@ -106,25 +107,27 @@ class AffectedCommand extends Command<void> {
     final workspace = await WorkspaceLoader.load(
       workspacePath ?? _findWorkspaceRoot(),
     );
-    // Use --base flag or fall back to workspace config defaultBase
-    final base = argResults!['base'] as String? ?? workspace.config.defaultBase;
+    // Use --base, GitLab CI context, or workspace config defaultBase.
+    final base = AffectedGit.resolveBase(
+      config: workspace.config,
+      explicitBase: argResults!['base'] as String?,
+    );
     final graph = ProjectGraph.build(workspace.projects);
 
     // Get changed files — either from --files or git
     List<String> changedFiles;
     if (filesArg != null && filesArg.isNotEmpty) {
-      changedFiles = filesArg
-          .split(',')
-          .map((f) => '${workspace.rootPath}/${f.trim()}')
-          .toList();
+      changedFiles = AffectedGit.filesFromArg(workspace.rootPath, filesArg);
     } else {
-      changedFiles = await _getChangedFiles(
-        workspace.rootPath,
-        base,
-        head,
-        includeUncommitted: uncommitted,
-        includeUntracked: untracked,
-      );
+      changedFiles = await AffectedGit(processRunner: processRunner)
+          .changedFiles(
+            workspaceRoot: workspace.rootPath,
+            base: base,
+            head: head,
+            includeUncommitted: uncommitted,
+            includeUntracked: untracked,
+            fetchBase: AffectedGit.shouldFetchBase(),
+          );
     }
 
     // Compute affected projects
@@ -213,68 +216,6 @@ class AffectedCommand extends Command<void> {
 
     final hasFailed = results.any((r) => r.isFailure);
     if (hasFailed) throw const ProcessExit(1);
-  }
-
-  /// Returns list of changed file paths by running git diff.
-  Future<List<String>> _getChangedFiles(
-    String workspaceRoot,
-    String base,
-    String head, {
-    bool includeUncommitted = false,
-    bool includeUntracked = false,
-  }) async {
-    final changedLines = <String>[];
-
-    // Changes between base and head
-    final diffResult = await processRunner.run(
-      ProcessCall(
-        executable: 'git',
-        arguments: ['diff', '--name-only', '$base...$head'],
-        workingDirectory: workspaceRoot,
-      ),
-    );
-    changedLines.addAll(
-      diffResult.stdout
-          .split('\n')
-          .where((l) => l.trim().isNotEmpty)
-          .map((l) => '$workspaceRoot/$l'),
-    );
-
-    // Uncommitted changes (staged + unstaged)
-    if (includeUncommitted) {
-      final uncommittedResult = await processRunner.run(
-        ProcessCall(
-          executable: 'git',
-          arguments: ['diff', '--name-only', 'HEAD'],
-          workingDirectory: workspaceRoot,
-        ),
-      );
-      changedLines.addAll(
-        uncommittedResult.stdout
-            .split('\n')
-            .where((l) => l.trim().isNotEmpty)
-            .map((l) => '$workspaceRoot/$l'),
-      );
-    }
-
-    // Untracked files
-    if (includeUntracked) {
-      final untrackedResult = await processRunner.run(
-        ProcessCall(
-          executable: 'git',
-          arguments: ['ls-files', '--others', '--exclude-standard'],
-          workingDirectory: workspaceRoot,
-        ),
-      );
-      changedLines.addAll(
-        untrackedResult.stdout
-            .split('\n')
-            .where((l) => l.trim().isNotEmpty)
-            .map((l) => '$workspaceRoot/$l'),
-      );
-    }
-
-    return changedLines.toSet().toList(); // deduplicate
   }
 
   void _printSummary(List<TaskResult> results, String targetName) {

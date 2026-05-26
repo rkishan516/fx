@@ -155,6 +155,42 @@ void main() {
       expect(affected.map((p) => p.name), equals(['utils']));
     });
 
+    test('relative changed file is resolved from workspace root', () {
+      final graph = ProjectGraph.build(allProjects);
+      final changedFiles = ['packages/utils/lib/utils.dart'];
+      final affected = AffectedAnalyzer.computeAffected(
+        changedFiles: changedFiles,
+        projects: allProjects,
+        graph: graph,
+        workspaceRoot: '/ws',
+      );
+      expect(affected.map((p) => p.name), equals(['utils']));
+    });
+
+    test('normalized relative changed file stays scoped to project', () {
+      final graph = ProjectGraph.build(allProjects);
+      final changedFiles = ['./packages/core/../utils/lib/utils.dart'];
+      final affected = AffectedAnalyzer.computeAffected(
+        changedFiles: changedFiles,
+        projects: allProjects,
+        graph: graph,
+        workspaceRoot: '/ws',
+      );
+      expect(affected.map((p) => p.name), equals(['utils']));
+    });
+
+    test('absolute path with workspace prefix sibling is ignored', () {
+      final graph = ProjectGraph.build(allProjects);
+      final changedFiles = ['/ws-other/packages/utils/lib/utils.dart'];
+      final affected = AffectedAnalyzer.computeAffected(
+        changedFiles: changedFiles,
+        projects: allProjects,
+        graph: graph,
+        workspaceRoot: '/ws',
+      );
+      expect(affected, isEmpty);
+    });
+
     test('pubspec.lock change affects all projects by default', () {
       final graph = ProjectGraph.build(allProjects);
       final changedFiles = ['/ws/pubspec.lock'];

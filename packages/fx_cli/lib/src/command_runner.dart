@@ -55,7 +55,9 @@ class FxCommandRunner extends CompletionCommandRunner<void> {
       AddCommand(formatter: formatter, processRunner: effectiveRunner),
     );
     addCommand(InitCommand());
-    addCommand(ListCommand(formatter: formatter));
+    addCommand(
+      ListCommand(formatter: formatter, processRunner: effectiveRunner),
+    );
     addCommand(GraphCommand(formatter: formatter));
     addCommand(
       RunCommand(

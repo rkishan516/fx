@@ -79,6 +79,72 @@ void main() {
 
       expect(buffer.toString(), contains('No affected projects'));
     });
+
+    test('scopes absolute --files path to matching project only', () async {
+      final pkgBFile = p.join(
+        workspaceDir.path,
+        'packages',
+        'pkg_b',
+        'lib',
+        'pkg_b.dart',
+      );
+
+      final buffer = StringBuffer();
+      final runner = FxCommandRunner(
+        outputSink: buffer,
+        processRunner: MockProcessRunner(
+          onRun: (_) => ProcessResult(exitCode: 0, stdout: '', stderr: ''),
+        ),
+      );
+
+      await runner.run([
+        'affected',
+        '--workspace',
+        workspaceDir.path,
+        '--files',
+        pkgBFile,
+      ]);
+
+      final output = buffer.toString();
+      expect(output, contains('pkg_b'));
+      expect(output, isNot(contains('pkg_a')));
+    });
+
+    test('scopes absolute git diff path to matching project only', () async {
+      final pkgBFile = p.join(
+        workspaceDir.path,
+        'packages',
+        'pkg_b',
+        'lib',
+        'pkg_b.dart',
+      );
+
+      final mockRunner = MockProcessRunner(
+        onRun: (call) {
+          if (call.executable == 'git') {
+            if (call.arguments.contains('diff')) {
+              return ProcessResult(exitCode: 0, stdout: pkgBFile, stderr: '');
+            }
+            if (call.arguments.contains('ls-files')) {
+              return ProcessResult(exitCode: 0, stdout: '', stderr: '');
+            }
+          }
+          return ProcessResult(exitCode: 0, stdout: 'ok', stderr: '');
+        },
+      );
+
+      final buffer = StringBuffer();
+      final runner = FxCommandRunner(
+        outputSink: buffer,
+        processRunner: mockRunner,
+      );
+
+      await runner.run(['affected', '--workspace', workspaceDir.path]);
+
+      final output = buffer.toString();
+      expect(output, contains('pkg_b'));
+      expect(output, isNot(contains('pkg_a')));
+    });
   });
 
   group('AffectedCommand (with --target)', () {
